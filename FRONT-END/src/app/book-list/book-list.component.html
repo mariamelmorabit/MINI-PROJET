@@ -1,0 +1,39 @@
+<h2>Book List</h2>
+
+<ul class="book-list">
+  <li *ngFor="let book of books" class="book-item">
+    <div class="book-details">
+      <p><span class="label">Title:</span> {{ book.title }}</p>
+      <p><span class="label">Author:</span> {{ book.author }}</p>
+      <p><span class="label">Price:</span> {{ book.price }} MAD</p>
+      <p><span class="label">Description:</span> {{ book.description }}</p>
+    </div>
+    <div class="book-actions">
+      <button (click)="editBook(book)" class="edit-btn">Edit</button>
+      <button (click)="deleteBook(book.id)" class="delete-btn">Delete</button>
+    </div>
+  </li>
+</ul>
+
+
+<div *ngIf="selectedBook" class="edit-form-container">
+  <h3>Edit Book</h3>
+  <form class="edit-form">
+    <label class="form-label">Title:
+      <input [(ngModel)]="selectedBook.title" name="title" class="form-input" required>
+    </label>
+    <label class="form-label">Author:
+      <input [(ngModel)]="selectedBook.author" name="author" class="form-input" required>
+    </label>
+    <label class="form-label">Price:
+      <input [(ngModel)]="selectedBook.price" name="price" type="number" step="0.01" class="form-input" required>
+    </label>
+    <label class="form-label">Description:
+      <input [(ngModel)]="selectedBook.description" name="description" class="form-input" required>
+    </label>
+    <div class="form-actions">
+      <button type="button" (click)="updateBook()" class="save-btn">Save</button>
+      <button type="button" (click)="cancelEdit()" class="cancel-btn">Cancel</button>
+    </div>
+  </form>
+</div>
